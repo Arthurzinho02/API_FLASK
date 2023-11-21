@@ -62,4 +62,3 @@ BS.addEventListener('click', ()=>{
         console.error("Ouve um erro na hora de excluir",error)
     })
 })
-console.log("oi")
