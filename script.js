@@ -1,6 +1,7 @@
 const tabela = document.querySelector('.tabela-js')
 const form = document.querySelector('.form-js')
 const BS = document.getElementById('B-S')
+const BE = document.getElementById('Editar')
 var ID = 0
 
 
@@ -24,7 +25,7 @@ function getData(data) {
                 delete
                 </span></button>
                 <button class="btn" type="button" data-bs-toggle="modal"
-                data-bs-target="#modaleditar"><span class="material-symbols-outlined text-success">
+                data-bs-target="#modaleditar" onclick="Editar(${item.TAREFA})"><span class="material-symbols-outlined text-success">
                 edit
                 </span></button></td>
             </tr>
@@ -61,4 +62,22 @@ BS.addEventListener('click', ()=>{
     .catch(function (error) {
         console.error("Ouve um erro na hora de excluir",error)
     })
+})
+var tarefaA;
+function Editar(Tarefa){
+    console.log(Tarefa)
+    tarefaA = Tarefa
+}
+console.log(tarefaA)
+
+BE.addEventListener('click', ()=>{
+    const input = document.getElementById("TarefaN")
+    const url = `http://127.0.0.1:5000/update/${tarefaA}/${input}`
+    axios.put(url).then((response) => {
+        console.log("Atualizado com sucesso", response.data)
+    })
+    .catch(function (error) {
+        console.error("Ouve um erro na hora de atualizar",error)
+    })
+    
 })
