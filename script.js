@@ -2,7 +2,8 @@ const tabela = document.querySelector('.tabela-js')
 const form = document.querySelector('.form-js')
 const BS = document.getElementById('B-S')
 const BE = document.getElementById('Editar')
-var ID = 0
+let ID = 0
+let tarefaA
 
 
 const dados = {}
@@ -25,7 +26,7 @@ function getData(data) {
                 delete
                 </span></button>
                 <button class="btn" type="button" data-bs-toggle="modal"
-                data-bs-target="#modaleditar" onclick="Editar(${item.TAREFA})"><span class="material-symbols-outlined text-success">
+                data-bs-target="#modaleditar" onclick="editar('${item.TAREFA}')"><span class="material-symbols-outlined text-success">
                 edit
                 </span></button></td>
             </tr>
@@ -51,6 +52,7 @@ form.addEventListener('submit', function (event) {
     event.preventDefault()
     Forms()
 })
+
 function excluir(id){
     ID = id
 }
@@ -63,16 +65,14 @@ BS.addEventListener('click', ()=>{
         console.error("Ouve um erro na hora de excluir",error)
     })
 })
-var tarefaA;
-function Editar(Tarefa){
-    console.log(Tarefa)
-    tarefaA = Tarefa
+
+function editar(tarefa){
+    tarefaA = tarefa
 }
-console.log(tarefaA)
 
 BE.addEventListener('click', ()=>{
-    const input = document.getElementById("TarefaN").value
-    const url = `http://127.0.0.1:5000/update/${tarefaA}/${input}`
+    var TarefaN = document.getElementById("TarefaN").value
+    const url = `http://127.0.0.1:5000/update/${tarefaA}/${TarefaN}`
     axios.put(url).then((response) => {
         console.log("Atualizado com sucesso", response.data)
     })
