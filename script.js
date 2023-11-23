@@ -71,7 +71,7 @@ function editar(tarefa){
 }
 
 BE.addEventListener('click', ()=>{
-    var TarefaN = document.getElementById("TarefaN").value
+    let TarefaN = document.getElementById("TarefaN").value
     const url = `http://127.0.0.1:5000/update/${tarefaA}/${TarefaN}`
     axios.put(url).then((response) => {
         console.log("Atualizado com sucesso", response.data)
