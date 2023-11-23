@@ -4,10 +4,9 @@ const BS = document.getElementById('B-S')
 const BE = document.getElementById('Editar')
 let ID = 0
 let tarefaA
-
-
 const dados = {}
 
+//===========GET===============
 axios.get('http://127.0.0.1:5000/list').then((response) => {
     getData(response.data)
 })
@@ -34,6 +33,7 @@ function getData(data) {
     })
 }
 
+//==============POST===============
 function Forms(){
     const tarefa = document.getElementById("Tarefa1").value
     if (tarefa.trim() !== ""){
@@ -42,17 +42,17 @@ function Forms(){
             console.log("Tarefa adicionada com sucesso", response.Tarefa)
         })
         .catch(function (error) {
-            console.error("Ouve um erro na hora de acionar",error)
+            console.error("Houve um erro na hora de acionar",error)
         })
 
     }
 }
-
 form.addEventListener('submit', function (event) {
     event.preventDefault()
     Forms()
 })
 
+//==================DELETE=================
 function excluir(id){
     ID = id
 }
@@ -62,14 +62,14 @@ BS.addEventListener('click', ()=>{
         console.log("Excluido com sucesso", response.data)
     })
     .catch(function (error) {
-        console.error("Ouve um erro na hora de excluir",error)
+        console.error("Houve um erro na hora de excluir",error)
     })
 })
 
+//==================PUT=======================
 function editar(tarefa){
     tarefaA = tarefa
 }
-
 BE.addEventListener('click', ()=>{
     let TarefaN = document.getElementById("TarefaN").value
     const url = `http://127.0.0.1:5000/update/${tarefaA}/${TarefaN}`
@@ -77,7 +77,7 @@ BE.addEventListener('click', ()=>{
         console.log("Atualizado com sucesso", response.data)
     })
     .catch(function (error) {
-        console.error("Ouve um erro na hora de atualizar",error)
+        console.error("Houve um erro na hora de atualizar",error)
     })
     
 })
